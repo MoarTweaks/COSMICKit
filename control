@@ -1,0 +1,11 @@
+Package: com.futur3sn0w.cosmickit
+Name: COSMIC Kit
+Version: 0.0.1
+Architecture: iphoneos-arm64
+Description: COSMIC Open Source Module Interface & Controls for Control Center modules.
+Maintainer: futur3sn0w
+Author: futur3sn0w
+Section: Tweaks
+Depends: firmware (>= 16.0), firmware (<< 17.0)
+Replaces: com.futur3sn0w.ccaster (<< 0.0.2)
+Breaks: com.futur3sn0w.ccaster (<< 0.0.2)
