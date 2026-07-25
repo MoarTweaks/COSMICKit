@@ -1,6 +1,6 @@
 # COSMIC Kit
 
-COSMIC Kit is a rootless iOS Control Center module package and future module API home for the MoarTweaks Control Center ecosystem.
+COSMIC Kit is a rootless iOS toolkit for Control Center controls, helper code, and future module APIs in the MoarTweaks ecosystem.
 
 COSMIC expands to:
 
@@ -8,7 +8,7 @@ COSMIC expands to:
 COSMIC Open Source Module Interface & Controls
 ```
 
-For now, COSMIC Kit owns the standalone module bundles that used to be aggregated into CCAster itself. The first split keeps the existing module bundle identifiers intact so current CCAster runtime handling and saved user layouts continue to recognize them.
+The project is intended to be a shared home for reusable Control Center pieces: module implementations, common helpers, compatibility shims, and experiments that should evolve separately from larger user-facing tweaks.
 
 This source repository is intentionally separate from the public package feed. Pushing here does not publish a package to the live APT repo or GitHub Pages.
 
@@ -20,40 +20,33 @@ COSMIC Kit is a rootless Theos project.
 env CLANG_MODULE_CACHE_PATH=/tmp/clang-module-cache SWIFT_MODULE_CACHE_PATH=/tmp/swift-module-cache make clean package FINALPACKAGE=1
 ```
 
-The package is configured for iOS 16:
+The package is currently configured for iOS 16:
 
 - package id: `com.futur3sn0w.cosmickit`
 - firmware: `>= 16.0, << 17.0`
 - install path: `/Library/ControlCenter/Bundles`
 
-## Current Modules
+## Scope
 
-The first module group is `Modules/Connectivity`, which builds:
+COSMIC Kit is intentionally broad. It may contain:
 
-- Airplane Mode
-- Wi-Fi
-- AirDrop
-- Cellular Data
-- Bluetooth
-- Personal Hotspot
-- VPN
+- reusable Control Center module foundations
+- module-specific helper APIs
+- shared UI and state utilities
+- compatibility wrappers for private Control Center classes
+- experiments that need to be tested independently before becoming part of a larger tweak
 
-Each module is currently a separate Control Center bundle that shares the same implementation file, `CCAConnectivityModules.xm`.
+Specific module lists will be documented once those modules are cleaner, better tested, and ready to be described as public-facing features.
 
-## CCAster
+## Working With CCAster
 
-COSMIC Kit is designed to work with [CCAster](https://github.com/MoarTweaks/CCAster), but it is packaged separately so optional modules can evolve without bloating or destabilizing the CCAster core.
+COSMIC Kit can work alongside [CCAster](https://github.com/MoarTweaks/CCAster), but the projects have different responsibilities.
 
-The split is:
-
-- CCAster owns the Control Center experience: layout, editing, add sheet, paging, resize behavior, and runtime integration.
-- COSMIC Kit owns optional module bundles and, eventually, reusable module APIs.
-
-CCAster currently recommends COSMIC Kit but does not require it. This lets the core tweak remain usable without the optional module pack.
+CCAster focuses on the Control Center experience itself: layout, editing, paging, resizing, and presentation behavior. COSMIC Kit is the lower-level companion space for controls and helpers that can be shared, tested, or replaced independently.
 
 ## Future Module Model
 
-The long-term goal is for COSMIC Kit modules to be richer than static one-off bundles. A future CCAster/COSMIC integration can support:
+The long-term goal is for COSMIC Kit to support richer module patterns than static one-off bundles. A future CCAster/COSMIC integration can support:
 
 - module families
 - duplicate-capable modules
